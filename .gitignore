@@ -2,3 +2,7 @@ bt-p2p
 gomon
 output.txt
 sample.txt
+backend/
+archive_name.tar.gz 
+btp2p.exe
+output_file
