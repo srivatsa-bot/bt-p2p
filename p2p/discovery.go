@@ -8,6 +8,7 @@ import (
 	"log"
 	"time"
 
+	"github.com/fatih/color"
 	"github.com/ipfs/go-cid"
 	dht "github.com/libp2p/go-libp2p-kad-dht"
 	peer "github.com/libp2p/go-libp2p/core/peer"
@@ -46,7 +47,7 @@ func AnnounceFile(ctx context.Context, kad *dht.IpfsDHT, fileID string) error {
 		return fmt.Errorf("failed to announce file %s: %w", fileID, err)
 	}
 
-	log.Printf("Announced file: %s (CID: %s)\n", key, c.String())
+	log.Printf("\n%s: %s (CID: %s)\n", color.GreenString("Announced file"), key, c.String())
 	return nil
 }
 
@@ -60,9 +61,9 @@ func FindProviders(ctx context.Context, kad *dht.IpfsDHT, fileID string) ([]peer
 		return nil, fmt.Errorf("failed to create CID for file %s: %w", fileID, err)
 	}
 
-	log.Printf("Searching for providers of: %s (CID: %s)\n", key, c.String())
+	log.Printf("%s: %s (CID: %s)\n", color.GreenString("[Searching for providers of]"), key, c.String())
 
-	// Create a context with timeout for provider search
+	//context with timeout for provider search
 	searchCtx, cancel := context.WithTimeout(ctx, 30*time.Second)
 	defer cancel()
 
@@ -82,7 +83,7 @@ func FindProviders(ctx context.Context, kad *dht.IpfsDHT, fileID string) ([]peer
 				}
 				return results, nil
 			}
-			fmt.Printf("Found provider: %s\n", p.ID)
+			fmt.Printf("%s %s\n", color.BlueString("Found provider:"), p.ID)
 			results = append(results, p)
 
 		case <-timeout:

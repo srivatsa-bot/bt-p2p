@@ -76,6 +76,6 @@ func FileHash(filePath string) ([32]byte, error) {
 	}
 
 	var result [32]byte
-	copy(result[:], hash.Sum(nil))
+	copy(result[:], hash.Sum(nil)) //copy hash value from hasher into result
 	return result, nil
 }
