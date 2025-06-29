@@ -7,3 +7,7 @@ archive_name.tar.gz
 btp2p.exe
 hmm/
 output_file
+libp2p/
+.gitignore
+output_file
+p2p.exe

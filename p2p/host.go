@@ -21,7 +21,13 @@ const ProtocolID = protocol.ID("/bt/file/1.0.0")
 func CreateHost(ctx context.Context) (host.Host, *dht.IpfsDHT, error) {
 
 	//host(nodes unique identity on network) creation
-	h, err := libp2p.New(libp2p.NATPortMap())
+	h, err := libp2p.New(
+		libp2p.NATPortMap(),
+		libp2p.EnableAutoNATv2(),    // Discover public IP and reachability.
+		libp2p.EnableHolePunching(), // Attempt to punch holes through NATs for direct connections.
+		libp2p.EnableRelayService(), // Enable this node to act as a relay
+		libp2p.EnableRelay(),        // Enable this node to use relays
+	)
 	if err != nil {
 		return nil, nil, fmt.Errorf("failed to create libp2p host: %w", err)
 	}

@@ -83,8 +83,19 @@ func FindProviders(ctx context.Context, kad *dht.IpfsDHT, fileID string) ([]peer
 				}
 				return results, nil
 			}
-			fmt.Printf("%s %s\n", color.BlueString("Found provider:"), p.ID)
-			results = append(results, p)
+			// If no addresses, try to resolve
+			if len(p.Addrs) == 0 {
+				info, err := kad.FindPeer(ctx, p.ID)
+				if err == nil && len(info.Addrs) > 0 {
+					p.Addrs = info.Addrs
+				}
+			}
+			if len(p.Addrs) > 0 {
+				fmt.Printf("%s %s\n", color.BlueString("Found provider:"), p.ID)
+				results = append(results, p)
+			} else {
+				log.Printf("Found provider %s but no addresses", p.ID)
+			}
 
 		case <-timeout:
 			if len(results) == 0 {
