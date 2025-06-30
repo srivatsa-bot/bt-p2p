@@ -236,29 +236,6 @@ Out of memory during download
 - Ensure sufficient RAM for parallel operations
 - Monitor system resources during large downloads
 
-## 🔍 Monitoring and Logging
-
-The client provides detailed logging with color-coded output:
-
-- **Green**: Successful operations (announcements, discoveries)
-- **Blue**: Provider information and chunk progress
-- **Standard**: Informational messages
-- **Error logs**: Connection failures and timeouts
-
-Enable debug logging for detailed DHT operations and chunk tracking.
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 🙏 Acknowledgments
 
 - [libp2p](https://libp2p.io/) - Modular network stack
@@ -273,4 +250,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Built with ❤️ using libp2p and Go**
+
